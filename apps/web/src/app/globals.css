@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-dm-sans), sans-serif;
+  --font-serif: var(--font-instrument-serif), serif;
+  --font-display: var(--font-syne), sans-serif;
+
+  --color-saffron: #f59e0b;
+  --color-saffron-dark: #d97706;
+  --color-saffron-light: #fef3c7;
+  --color-teal-accent: #0d9488;
+  --color-teal-dark: #0f766e;
+  --color-teal-light: #ccfbf1;
+  --color-slate-gray: #f3f4f6;
+
+  --color-ink: #0a0a0f;
+  --color-ink-2: #13131a;
+  --color-ink-3: #1c1c26;
+  --color-surface: #f0ede6;
+  --color-surface-2: #e8e4db;
+  --color-accent-bright: #00e5b4;
+  --color-accent-warm: #f5c842;
+  --color-accent-coral: #ff6b4a;
+
+  --animate-bounce-slow: bounce 3s infinite;
+}
+
+:root {
+  --background: #f0ede6; /* Light theme: Warm cream surface */
+  --foreground: #0a0a0f; /* Deep ink text */
+  --card: #e8e4db; /* Surface-2 from lnding.html */
+  --card-foreground: #0a0a0f;
+  --popover: #e8e4db;
+  --popover-foreground: #0a0a0f;
+  --primary: #0d9488; /* Teal */
+  --primary-foreground: #ffffff;
+  --secondary: #f5c842; /* Saffron/Warm accent */
+  --secondary-foreground: #0a0a0f;
+  --muted: #cbd5e1;
+  --muted-foreground: #64748b;
+  --accent: #00e5b4;
+  --accent-foreground: #0a0a0f;
+  --destructive: #ff6b4a;
+  --destructive-foreground: #ffffff;
+  --border: rgba(10, 10, 15, 0.05); /* Soft transparent dark ink border */
+  --input: rgba(10, 10, 15, 0.05);
+  --ring: #0d9488;
+  --radius: 1rem;
+}
+
+.dark {
+  --background: #0a0a0f; /* Dark theme: Deep ink */
+  --foreground: #f0ede6; /* Warm cream text */
+  --card: #13131a; /* Ink-2 */
+  --card-foreground: #f0ede6;
+  --popover: #1c1c26; /* Ink-3 */
+  --popover-foreground: #f0ede6;
+  --primary: #00e5b4; /* Bright teal accent */
+  --primary-foreground: #0a0a0f;
+  --secondary: #f5c842; /* Saffron */
+  --secondary-foreground: #0a0a0f;
+  --muted: #1c1c26;
+  --muted-foreground: #8a8a9a;
+  --accent: #00e5b4;
+  --accent-foreground: #0a0a0f;
+  --destructive: #ff6b4a; /* Coral */
+  --destructive-foreground: #f0ede6;
+  --border: rgba(240, 237, 230, 0.05); /* Soft transparent cream border */
+  --input: rgba(240, 237, 230, 0.05);
+  --ring: #00e5b4;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Noise overlay */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Glassmorphism Classes */
+.glass {
+  background: rgba(240, 237, 230, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(10, 10, 15, 0.05);
+}
+
+.dark .glass {
+  background: rgba(19, 19, 26, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(240, 237, 230, 0.05);
+}
+
+/* Bento Grid Item Transitions */
+.bento-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom animations */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--card);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}

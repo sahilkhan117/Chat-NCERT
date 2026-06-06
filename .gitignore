@@ -1,0 +1,29 @@
+# Dependency directories
+node_modules/
+.pnpm-store/
+
+# Next.js build output
+.next/
+out/
+
+# Wrangler local state
+.wrangler/
+.dev.vars.local
+
+# Local environment variables & secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.dev.vars
+
+# IDE and System Files
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Temp/Build directories
+dist/
+build/
