@@ -1,13 +1,7 @@
 import type { NextConfig } from "next";
-import path from "path";
-
-const monorepoRoot = path.resolve(process.cwd(), "../../");
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: monorepoRoot,
-  turbopack: {
-    root: monorepoRoot,
-  },
+  // No turbopack config needed — build script uses --webpack flag
 };
 
 export default nextConfig;
