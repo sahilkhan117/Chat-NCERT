@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { useTheme } from "../components/theme-provider";
 import {
@@ -79,16 +80,22 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300 font-sans relative">
       {/* Radial glows */}
-      <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[50%] bg-gradient-to-br from-accent-bright/5 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-gradient-to-br from-accent-warm/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[50%] bg-linear-to-br from-accent-bright/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-linear-to-br from-accent-warm/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-12 py-5 border-b border-border bg-background/80 backdrop-blur-md flex items-center justify-between transition-all duration-300">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-accent-bright animate-ping" />
-          <span className="font-display font-extrabold text-lg sm:text-xl tracking-tight flex items-center gap-1.5">
-            📚 Chat<span className="font-serif italic text-accent-bright font-normal">NCERT</span>
-          </span>
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-12 py-5 border-b border-neutral-500/30 bg-background/80 backdrop-blur-md flex items-center justify-between transition-all duration-300">
+        <div className="flex items-center">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="Chat-NCERT Logo"
+              width={140}
+              height={40}
+              priority
+              className="h-8 sm:h-9 w-auto object-contain dark:brightness-0 dark:invert transition-all"
+            />
+          </Link>
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider">
@@ -154,7 +161,7 @@ export default function LandingPage() {
           </div>
 
           {/* Social proof */}
-          <div className="flex items-center gap-3 pt-6 border-t border-border/50">
+          <div className="flex items-center gap-3 pt-6 border-t border-neutral-500/30/50">
             <div className="flex -space-x-2.5">
               <div className="w-8 h-8 rounded-full border-2 border-background bg-accent-bright text-ink font-bold text-[10px] flex items-center justify-center">N</div>
               <div className="w-8 h-8 rounded-full border-2 border-background bg-accent-warm text-ink font-bold text-[10px] flex items-center justify-center">S</div>
@@ -171,7 +178,7 @@ export default function LandingPage() {
         <div className="w-full relative animate-fade-up delay-100">
           <div className="relative border border-neutral-500/30 rounded-2xl bg-card shadow-2xl overflow-hidden">
             {/* Header */}
-            <div className="px-5 py-4 border-b border-border bg-background/50 flex items-center justify-between">
+            <div className="px-5 py-4 border-b border-neutral-500/30 bg-background/50 flex items-center justify-between">
               <div className="flex gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
@@ -220,7 +227,7 @@ export default function LandingPage() {
             </div>
 
             {/* Input mock */}
-            <div className="p-4 border-t border-border bg-background/35 flex items-center gap-3">
+            <div className="p-4 border-t border-neutral-500/30 bg-background/35 flex items-center gap-3">
               <div className="flex-1 px-3 py-2 bg-background border border-neutral-500/30 rounded-lg text-muted-foreground/60 text-xs">
                 Ask a follow-up question...
               </div>
@@ -255,7 +262,7 @@ export default function LandingPage() {
       </header>
 
       {/* MARQUEE */}
-      <section className="py-6 border-y border-border overflow-hidden bg-card/20 backdrop-blur-sm relative z-10">
+      <section className="py-6 border-y border-neutral-500/30 overflow-hidden bg-card/20 backdrop-blur-sm relative z-10">
         <div className="flex w-max animate-marquee whitespace-nowrap">
           <div className="flex gap-16 px-4">
             {["Chemical Reactions", "Acids, Bases & Salts", "Carbon & Compounds", "Metals & Non-metals", "Life Processes", "Control & Coordination", "Light Reflection & Refraction"].map((item, idx) => (
@@ -277,7 +284,7 @@ export default function LandingPage() {
       </section>
 
       {/* STATS */}
-      <section className="bg-background border-b border-border py-12 relative z-10">
+      <section className="bg-background border-b border-neutral-500/30 py-12 relative z-10">
         <div className="max-w-6xl mx-auto px-6 sm:px-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-border/40 border border-neutral-500/30 rounded-2xl overflow-hidden">
           <div className="p-8 text-center bg-background hover:bg-card/30 transition-colors">
             <h3 className="font-serif text-4xl sm:text-5xl font-normal text-foreground leading-none">
@@ -382,7 +389,7 @@ export default function LandingPage() {
       </section>
 
       {/* FOR PLATFORMS SECTION */}
-      <section id="platforms" className="bg-card/45 border-y border-border py-20 sm:py-28 relative z-10">
+      <section id="platforms" className="bg-card/45 border-y border-neutral-500/30 py-20 sm:py-28 relative z-10">
         <div className="max-w-6xl mx-auto px-6 sm:px-12 space-y-16">
           <div className="max-w-xl">
             <span className="text-[10px] font-bold text-accent-bright uppercase tracking-widest font-display flex items-center gap-2">
@@ -490,7 +497,7 @@ export default function LandingPage() {
       </section>
 
       {/* WHY US / PRODUCT COMPARISON */}
-      <section className="bg-card/45 border-y border-border py-20 sm:py-28 relative z-10">
+      <section className="bg-card/45 border-y border-neutral-500/30 py-20 sm:py-28 relative z-10">
         <div className="max-w-6xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 items-start">
           <div className="space-y-6">
             <span className="text-[10px] font-bold text-accent-bright uppercase tracking-widest font-display flex items-center gap-2">
@@ -625,7 +632,7 @@ export default function LandingPage() {
       </section>
 
       {/* API CTA SECTION */}
-      <section className="bg-card/45 border-y border-border py-20 relative z-10">
+      <section className="bg-card/45 border-y border-neutral-500/30 py-20 relative z-10">
         <div className="max-w-6xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="space-y-4">
             <h3 className="font-serif text-3xl sm:text-4xl font-normal leading-tight">
@@ -738,12 +745,18 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border bg-card/25 py-12 relative z-10">
+      <footer className="border-t border-neutral-500/30 bg-card/25 py-12 relative z-10">
         <div className="max-w-6xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-4 gap-8 pb-12">
           <div className="space-y-4">
-            <span className="font-display font-extrabold text-lg tracking-tight">
-              📚 Chat<span className="font-serif italic text-accent-bright">NCERT</span>
-            </span>
+            <Link href="/" className="inline-block">
+              <Image
+                src="/logo.png"
+                alt="Chat-NCERT Logo"
+                width={120}
+                height={35}
+                className="h-8 w-auto object-contain dark:brightness-0 dark:invert transition-all"
+              />
+            </Link>
             <p className="text-xs text-muted-foreground leading-relaxed font-light max-w-[200px]">
               AI-driven academic tutoring and study workspace custom tailored for the CBSE NCERT syllabus.
             </p>
@@ -775,7 +788,7 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 sm:px-12 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-muted-foreground">
+        <div className="max-w-6xl mx-auto px-6 sm:px-12 pt-8 border-t border-neutral-500/30 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-muted-foreground">
           <p>© 2026 Chat-NCERT. Built for Interview Demonstration. Permanent Zero-Cost Infrastructure.</p>
           <div className="flex gap-4">
             <a href="#" className="hover:text-foreground">Terms</a>

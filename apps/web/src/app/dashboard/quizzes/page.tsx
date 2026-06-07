@@ -105,7 +105,7 @@ export default function QuizzesPage() {
             </div>
 
             {/* Previous Score and Take button row */}
-            <div className="mt-6 pt-4 border-t border-border flex justify-between items-center">
+            <div className="mt-6 pt-4 border-t border-neutral-500/30 flex justify-between items-center">
               <div>
                 <span className="text-[10px] font-bold text-muted-foreground block">
                   PERSONAL BEST

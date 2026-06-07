@@ -60,7 +60,7 @@ export default function SettingsPage() {
     <div className="max-w-4xl mx-auto space-y-8 pb-24 animate-in fade-in duration-500">
       
       {/* Header section */}
-      <header className="pb-4 border-b border-border flex justify-between items-end">
+      <header className="pb-4 border-b border-neutral-500/30 flex justify-between items-end">
         <div>
           <h1 className="text-3xl font-extrabold text-foreground tracking-tight">
             Settings Portal
@@ -73,7 +73,7 @@ export default function SettingsPage() {
 
       {/* Ollama Configuration Section */}
       <section className="bg-card rounded-2xl border border-neutral-500/30 p-6 sm:p-8 shadow-sm space-y-6">
-        <div className="flex items-center gap-3 border-b border-border pb-4">
+        <div className="flex items-center gap-3 border-b border-neutral-500/30 pb-4">
           <Cpu className="text-teal-accent w-6 h-6 shrink-0" />
           <h2 className="text-lg font-extrabold text-foreground leading-tight">
             Ollama Configuration
@@ -181,7 +181,7 @@ export default function SettingsPage() {
 
       {/* Global Branding Section */}
       <section className="bg-card rounded-2xl border border-neutral-500/30 p-6 sm:p-8 shadow-sm space-y-6">
-        <div className="flex items-center gap-3 border-b border-border pb-4">
+        <div className="flex items-center gap-3 border-b border-neutral-500/30 pb-4">
           <Palette className="text-saffron w-6 h-6 shrink-0" />
           <h2 className="text-lg font-extrabold text-foreground leading-tight">
             Global Branding
@@ -249,7 +249,7 @@ export default function SettingsPage() {
             </label>
             
             {/* Drag & drop upload area */}
-            <label className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-2xl p-6 hover:bg-slate-gray/40 hover:border-teal-accent/50 cursor-pointer transition-all group">
+            <label className="flex flex-col items-center justify-center border-2 border-dashed border-neutral-500/30 rounded-2xl p-6 hover:bg-slate-gray/40 hover:border-teal-accent/50 cursor-pointer transition-all group">
               <CloudUpload className="text-muted-foreground group-hover:text-teal-accent w-10 h-10 transition-colors" />
               <p className="text-xs font-bold text-foreground mt-3">
                 Click to upload a new mascot file
@@ -291,7 +291,7 @@ export default function SettingsPage() {
       </section>
 
       {/* Sticky Bottom Deployment Bar */}
-      <div className="fixed bottom-0 left-0 right-0 h-20 bg-card/90 backdrop-blur-md border-t border-border flex items-center justify-center px-6 z-40 shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 h-20 bg-card/90 backdrop-blur-md border-t border-neutral-500/30 flex items-center justify-center px-6 z-40 shadow-lg">
         <div className="w-full max-w-4xl flex items-center justify-between">
           <div className="text-xs">
             {deployStatus === "deploying" && (

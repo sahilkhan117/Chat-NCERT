@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
@@ -57,18 +58,22 @@ export function Sidebar({ userRole, userName }: SidebarProps) {
 
   return (
     <div
-      className={`h-screen flex flex-col bg-card border-r border-border text-foreground transition-all duration-300 ${
+      className={`h-screen flex flex-col bg-card border-r border-neutral-500/30 text-foreground transition-all duration-300 ${
         collapsed ? "w-20" : "w-64"
       }`}
     >
       {/* Brand Logo Header */}
-      <div className="p-6 border-b border-border flex items-center justify-between">
+      <div className="p-6 border-b border-neutral-500/30 flex items-center justify-between">
         {!collapsed && (
-          <Link href="/" className="font-extrabold text-xl flex items-center gap-2">
-            <span className="text-teal-accent">📚 Chat</span>
-            <span className="text-saffron bg-saffron/10 px-2 py-0.5 rounded text-sm font-semibold">
-              NCERT
-            </span>
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt="Chat-NCERT Logo"
+              width={140}
+              height={40}
+              priority
+              className="h-9 w-auto object-contain dark:brightness-0 dark:invert transition-all"
+            />
           </Link>
         )}
         <button
@@ -116,7 +121,7 @@ export function Sidebar({ userRole, userName }: SidebarProps) {
       </nav>
 
       {/* Sidebar Footer */}
-      <div className="p-4 border-t border-border">
+      <div className="p-4 border-t border-neutral-500/30">
         <button
           className="w-full flex items-center gap-3 px-4 py-2 text-xs font-semibold rounded-lg text-red-500 hover:bg-red-50 hover:text-red-600 transition-colors"
           type="button"

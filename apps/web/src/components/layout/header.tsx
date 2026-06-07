@@ -12,7 +12,7 @@ export function Header({ title, userRole }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="h-16 px-8 border-b border-border bg-card/80 backdrop-blur-md flex items-center justify-between sticky top-0 z-40">
+    <header className="h-16 px-8 border-b border-neutral-500/30 bg-card/80 backdrop-blur-md flex items-center justify-between sticky top-0 z-40">
       {/* Page Title */}
       <div>
         <h1 className="font-extrabold text-xl tracking-tight text-foreground flex items-center gap-2">

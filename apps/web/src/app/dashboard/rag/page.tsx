@@ -90,7 +90,7 @@ export default function RAGPage() {
   return (
     <div className="max-w-4xl mx-auto flex flex-col h-[calc(100vh-12rem)] relative bg-card border border-neutral-500/30 rounded-2xl shadow-sm overflow-hidden">
       {/* Target Book Filter Topbar */}
-      <div className="p-4 bg-muted border-b border-border flex items-center justify-between">
+      <div className="p-4 bg-muted border-b border-neutral-500/30 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Book className="text-teal-accent w-5 h-5" />
           <div>
@@ -135,7 +135,7 @@ export default function RAGPage() {
 
               {/* Citations section */}
               {msg.citations && msg.citations.length > 0 && (
-                <div className="mt-4 pt-3 border-t border-border flex flex-wrap gap-2">
+                <div className="mt-4 pt-3 border-t border-neutral-500/30 flex flex-wrap gap-2">
                   <span className="text-[10px] font-bold text-muted-foreground w-full mb-1">
                     Citations referenced:
                   </span>
@@ -168,7 +168,7 @@ export default function RAGPage() {
       </div>
 
       {/* Input Message Form */}
-      <form onSubmit={handleSendMessage} className="p-4 border-t border-border bg-card">
+      <form onSubmit={handleSendMessage} className="p-4 border-t border-neutral-500/30 bg-card">
         <div className="flex gap-3">
           <input
             type="text"

@@ -199,7 +199,7 @@ export default function CommunityPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 animate-in fade-in duration-500">
       {/* Header section */}
-      <header className="pb-4 border-b border-border">
+      <header className="pb-4 border-b border-neutral-500/30">
         <h1 className="text-3xl font-extrabold text-foreground tracking-tight">Community Hub</h1>
         <p className="text-muted-foreground text-sm mt-1">
           Share study cards, clear doubt pools, and interact with fellow NCERT scholars.
@@ -260,7 +260,7 @@ export default function CommunityPage() {
                     value={postTitle}
                     onChange={(e) => setPostTitle(e.target.value)}
                     placeholder="Discussion Topic Title..."
-                    className="w-full bg-transparent border-b border-border pb-2 mb-2 text-sm font-bold text-foreground focus:outline-none focus:border-teal-accent placeholder:text-muted-foreground/60"
+                    className="w-full bg-transparent border-b border-neutral-500/30 pb-2 mb-2 text-sm font-bold text-foreground focus:outline-none focus:border-teal-accent placeholder:text-muted-foreground/60"
                   />
                 )}
                 <textarea
@@ -275,7 +275,7 @@ export default function CommunityPage() {
                 
                 {/* Expended Actions Bar */}
                 {isCreatorFocused && (
-                  <div className="flex items-center justify-between pt-3 border-t border-border mt-2 animate-in slide-in-from-top-1 duration-200">
+                  <div className="flex items-center justify-between pt-3 border-t border-neutral-500/30 mt-2 animate-in slide-in-from-top-1 duration-200">
                     <div className="flex gap-1">
                       <button
                         type="button"
@@ -440,7 +440,7 @@ export default function CommunityPage() {
 
                   {/* Expanded Comments Panel */}
                   {expandedPostComments[post.id] && (
-                    <div className="mt-4 pt-4 border-t border-border space-y-4">
+                    <div className="mt-4 pt-4 border-t border-neutral-500/30 space-y-4">
                       {post.comments.map((comm) => (
                         <div key={comm.id} className="flex gap-3 items-start pl-0 sm:pl-12">
                           <div

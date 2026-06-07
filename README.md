@@ -2,6 +2,11 @@
 
 <div align="center">
 
+<img src="apps/web/public/logo.png" alt="Chat-NCERT Logo" width="450" />
+
+<br/>
+<br/>
+
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://chat-ncert-a-ncert-based-rag-ai-tut.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -155,7 +160,15 @@ cd packages/db
 bun run drizzle-kit push
 ```
 
-### 6. Start the development server
+### 6. Seed the database (optional)
+
+To populate the database with sample tenants, users, documents, quizzes, posts, and assignments, run from the monorepo root:
+
+```bash
+bun run db:seed
+```
+
+### 7. Start the development server
 
 ```bash
 # From monorepo root

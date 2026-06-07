@@ -58,7 +58,7 @@ export default function StudentDashboard() {
   return (
     <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-500">
       {/* Header Panel */}
-      <header className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 pb-2 border-b border-border">
+      <header className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 pb-2 border-b border-neutral-500/30">
         <div>
           <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground flex items-center gap-2">
             Welcome back, Arjun! 👋

@@ -214,7 +214,7 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
                 className={`w-full text-left p-4 rounded-xl font-semibold text-sm border transition-all duration-200 ${
                   isSelected
                     ? "bg-teal-light/30 border-teal-accent text-teal-dark scale-[1.01]"
-                    : "bg-slate-gray border-border hover:border-teal-accent/30 text-foreground"
+                    : "bg-slate-gray border-neutral-500/30 hover:border-teal-accent/30 text-foreground"
                 }`}
                 type="button"
               >
@@ -222,7 +222,7 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
                   className={`inline-block w-6 h-6 rounded-lg text-xs font-bold mr-3 text-center leading-6 border ${
                     isSelected
                       ? "bg-teal-accent border-teal-accent text-white"
-                      : "bg-white border-border text-muted-foreground"
+                      : "bg-white border-neutral-500/30 text-muted-foreground"
                   }`}
                 >
                   {String.fromCharCode(65 + optIdx)}
@@ -234,7 +234,7 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
         </div>
 
         {/* Card Actions Footer */}
-        <div className="flex justify-between items-center pt-4 border-t border-border">
+        <div className="flex justify-between items-center pt-4 border-t border-neutral-500/30">
           <button
             onClick={handleBack}
             disabled={currentIdx === 0}
