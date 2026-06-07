@@ -5,7 +5,7 @@ export const runtime = "edge";
 import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Trophy, Flame, ChevronLeft, ChevronRight, Clock, Award, Star } from "lucide-react";
+import { Trophy, ChevronLeft, ChevronRight, Clock, Award, Star } from "lucide-react";
 
 interface Question {
   id: string;
@@ -18,9 +18,9 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
   const { id } = use(params);
   const router = useRouter();
 
-  // Mock quiz questions
-  const quizTitle = "Chemical Reactions and Equations";
-  const questions: Question[] = [
+  // State-driven quiz questions and titles
+  const [quizTitle, setQuizTitle] = useState("Chemical Reactions and Equations");
+  const [questions, setQuestions] = useState<Question[]>([
     {
       id: "q1",
       text: "Which of the following is a displacement reaction?",
@@ -54,24 +54,80 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
       ],
       correctIndex: 1,
     },
-  ];
+  ]);
 
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<{ [qId: string]: number }>({});
-  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes total
+  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes total default
   const [finished, setFinished] = useState(false);
   const [score, setScore] = useState(0);
 
+  // Load custom questions dynamically from LocalStorage if applicable
+  useEffect(() => {
+    if (id && id.startsWith("custom-quiz-")) {
+      const stored = localStorage.getItem(id);
+      if (stored) {
+        try {
+          const quiz = JSON.parse(stored);
+          if (quiz.title) setQuizTitle(quiz.title);
+          if (quiz.questions) setQuestions(quiz.questions);
+          if (quiz.questions && quiz.questions.length > 0) {
+            setTimeLeft(quiz.questions.length * 60); // 1 minute per question
+          }
+        } catch (err) {
+          console.error("Failed to parse custom quiz", err);
+        }
+      }
+    } else {
+      // Fallback for default pre-seeded quizzes
+      if (id === "quiz-2") {
+        setQuizTitle("Acids, Bases and Salts");
+        setQuestions([
+          {
+            id: "q1",
+            text: "Which acid is present in tomato?",
+            options: ["Citric acid", "Oxalic acid", "Lactic acid", "Methanoic acid"],
+            correctIndex: 1,
+          },
+          {
+            id: "q2",
+            text: "Sodium hydrogen carbonate is commonly known as:",
+            options: ["Baking soda", "Washing soda", "Bleaching powder", "Plaster of Paris"],
+            correctIndex: 0,
+          }
+        ]);
+        setTimeLeft(120);
+      } else if (id === "quiz-3") {
+        setQuizTitle("Carbon and its Compounds");
+        setQuestions([
+          {
+            id: "q1",
+            text: "Buckminsterfullerene is an allotropic form of:",
+            options: ["Phosphorus", "Sulfur", "Carbon", "Tin"],
+            correctIndex: 2,
+          },
+          {
+            id: "q2",
+            text: "Pentane has the molecular formula C5H12. It has:",
+            options: ["5 covalent bonds", "12 covalent bonds", "16 covalent bonds", "17 covalent bonds"],
+            correctIndex: 2,
+          }
+        ]);
+        setTimeLeft(180);
+      }
+    }
+  }, [id]);
+
   // Timer Countdown Effect
   useEffect(() => {
-    if (timeLeft <= 0 || finished) return;
+    if (timeLeft <= 0 || finished || questions.length === 0) return;
 
     const timer = setTimeout(() => {
       setTimeLeft(timeLeft - 1);
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [timeLeft, finished]);
+  }, [timeLeft, finished, questions]);
 
   // Formatter for MM:SS
   const formatTime = (seconds: number) => {
@@ -81,6 +137,7 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
   };
 
   const handleSelectOption = (optIdx: number) => {
+    if (questions.length === 0) return;
     const qId = questions[currentIdx].id;
     setSelectedAnswers((prev) => ({ ...prev, [qId]: optIdx }));
   };
@@ -110,10 +167,19 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
     setFinished(true);
   };
 
+  // Safeguard if questions aren't loaded yet
+  if (questions.length === 0) {
+    return (
+      <div className="max-w-md mx-auto py-24 text-center text-xs font-semibold text-muted-foreground animate-pulse">
+        Loading quiz questions...
+      </div>
+    );
+  }
+
   // Render Finished Summary Card
   if (finished) {
     return (
-      <div className="max-w-xl mx-auto p-8 rounded-2xl bg-card border border-neutral-500/30 text-center shadow-lg space-y-6">
+      <div className="max-w-xl mx-auto p-8 rounded-2xl bg-card border border-neutral-500/30 text-center shadow-lg space-y-6 animate-in zoom-in-95 duration-300">
         <Trophy className="mx-auto text-saffron w-16 h-16 animate-bounce" />
         <div>
           <h2 className="text-3xl font-black text-foreground leading-tight">Quiz Completed!</h2>
@@ -148,13 +214,13 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
         <div className="flex gap-4 pt-4">
           <Link
             href="/dashboard/quizzes"
-            className="flex-1 py-3 rounded-xl bg-slate-gray hover:bg-muted border border-neutral-500/30 font-bold text-xs text-foreground transition-colors"
+            className="flex-1 py-3 rounded-xl bg-slate-gray hover:bg-muted border border-neutral-500/30 font-bold text-xs text-foreground transition-all duration-200"
           >
             Practice Board
           </Link>
           <Link
             href="/dashboard"
-            className="flex-1 py-3 rounded-xl bg-teal-accent hover:bg-teal-dark text-white font-bold text-xs transition-colors"
+            className="flex-1 py-3 rounded-xl bg-teal-accent hover:bg-teal-dark text-white font-bold text-xs transition-all duration-200"
           >
             Study Hall Home
           </Link>
@@ -168,7 +234,7 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
   const selectedOption = selectedAnswers[currentQuestion.id];
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
+    <div className="max-w-2xl mx-auto space-y-6 animate-in fade-in duration-300">
       {/* Top bar with timer & progress */}
       <div className="p-4 rounded-2xl bg-card border border-neutral-500/30 flex justify-between items-center shadow-sm">
         <div>
@@ -238,7 +304,7 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
           <button
             onClick={handleBack}
             disabled={currentIdx === 0}
-            className="px-4 py-2.5 rounded-xl border border-neutral-500/30 bg-slate-gray hover:bg-muted font-bold text-xs disabled:opacity-50 text-foreground transition-colors flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-xl border border-neutral-500/30 bg-slate-gray hover:bg-muted font-bold text-xs disabled:opacity-50 text-foreground transition-all duration-200 flex items-center gap-1.5"
             type="button"
           >
             <ChevronLeft size={16} /> Previous
@@ -248,7 +314,7 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
             <button
               onClick={handleSubmitQuiz}
               disabled={Object.keys(selectedAnswers).length < questions.length}
-              className="px-5 py-2.5 rounded-xl bg-saffron hover:bg-saffron-dark disabled:bg-muted disabled:text-muted-foreground text-foreground font-black text-xs transition-colors flex items-center gap-1.5"
+              className="px-5 py-2.5 rounded-xl bg-saffron hover:bg-saffron-dark disabled:bg-muted disabled:text-muted-foreground text-foreground font-black text-xs transition-all duration-200 flex items-center gap-1.5"
               type="button"
             >
               Submit Test <Award size={16} />
@@ -256,7 +322,7 @@ export default function QuizTakerPage({ params }: { params: Promise<{ id: string
           ) : (
             <button
               onClick={handleNext}
-              className="px-5 py-2.5 rounded-xl bg-teal-accent hover:bg-teal-dark text-white font-bold text-xs transition-colors flex items-center gap-1.5"
+              className="px-5 py-2.5 rounded-xl bg-teal-accent hover:bg-teal-dark text-white font-bold text-xs transition-all duration-200 flex items-center gap-1.5"
               type="button"
             >
               Next Question <ChevronRight size={16} />

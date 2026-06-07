@@ -200,7 +200,7 @@ export default function CommunityPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 animate-in fade-in duration-500">
       {/* Header section with Glassmorphic subtitle */}
-      <header className="pb-4 border-b border-border/40">
+      <header className="pb-4 border-b border-neutral-500/40">
         <h1 className="text-3xl font-extrabold text-foreground tracking-tight flex items-center gap-2">
           <span>Community Hub</span>
           <Sparkles className="text-saffron size-5 animate-pulse" />
@@ -218,7 +218,7 @@ export default function CommunityPage() {
           <h2 className="text-foreground/90 text-xs font-bold uppercase tracking-widest px-3">
             Categories
           </h2>
-          <nav className="flex flex-col gap-1.5 p-2 bg-card/35 backdrop-blur-md border border-border/30 rounded-2xl">
+          <nav className="flex flex-col gap-1.5 p-2 bg-card/35 backdrop-blur-md border border-neutral-500/30 rounded-2xl">
             {categories.map((cat) => {
               const IconComp = cat.icon;
               const isActive = activeCategory === cat.name;
@@ -246,7 +246,7 @@ export default function CommunityPage() {
           
           {/* Post Creator Container (Premium Glassmorphism) */}
           <div
-            className={`bg-card/45 backdrop-blur-md rounded-2xl border border-border/30 p-4 transition-all duration-300 relative ${
+            className={`bg-card/45 backdrop-blur-md rounded-2xl border border-neutral-500/30 p-4 transition-all duration-300 relative ${
               isCreatorFocused ? "shadow-xl border-teal-accent/40 ring-1 ring-teal-accent/15" : "shadow-sm"
             }`}
           >
@@ -268,7 +268,7 @@ export default function CommunityPage() {
                     value={postTitle}
                     onChange={(e) => setPostTitle(e.target.value)}
                     placeholder="What is your discussion topic?"
-                    className="w-full bg-transparent border-b border-border/30 pb-2 mb-2 text-sm font-bold text-foreground focus:outline-none focus:border-teal-accent placeholder:text-muted-foreground/50"
+                    className="w-full bg-transparent border-b border-neutral-500/30 pb-2 mb-2 text-sm font-bold text-foreground focus:outline-none focus:border-teal-accent placeholder:text-muted-foreground/50"
                   />
                 )}
                 <textarea
@@ -283,7 +283,7 @@ export default function CommunityPage() {
                 
                 {/* Expanded Actions Bar */}
                 {isCreatorFocused && (
-                  <div className="flex items-center justify-between pt-3 border-t border-border/30 mt-2 animate-in slide-in-from-top-1 duration-200">
+                  <div className="flex items-center justify-between pt-3 border-t border-neutral-500/30 mt-2 animate-in slide-in-from-top-1 duration-200">
                     <div className="flex gap-1">
                       <button
                         type="button"
@@ -340,10 +340,10 @@ export default function CommunityPage() {
               .map((post) => (
                 <article
                   key={post.id}
-                  className="bg-card/45 backdrop-blur-md rounded-2xl border border-border/30 shadow-lg hover:shadow-xl hover:border-border/60 transition-all duration-300 overflow-hidden"
+                  className="bg-card/45 backdrop-blur-md rounded-2xl border border-neutral-500/30 shadow-lg hover:shadow-xl hover: border-neutral-500/60 transition-all duration-300 overflow-hidden"
                 >
                   {/* Post Header (Instagram-style) */}
-                  <div className="flex justify-between items-center px-4 py-3 border-b border-border/20">
+                  <div className="flex justify-between items-center px-4 py-3 border-b border-neutral-500/20">
                     <div className="flex items-center gap-2.5">
                       {post.isSystem ? (
                         <div className="p-[2.5px] bg-gradient-to-tr from-teal-accent to-accent-bright rounded-full">
@@ -418,7 +418,7 @@ export default function CommunityPage() {
                   </div>
 
                   {/* Instagram-style Social Actions Row */}
-                  <div className="px-4 py-2 flex items-center justify-between border-t border-border/10">
+                  <div className="px-4 py-2 flex items-center justify-between border-t border-neutral-500/10">
                     <div className="flex items-center gap-4">
                       {/* Heart (Like) */}
                       <button
@@ -503,15 +503,15 @@ export default function CommunityPage() {
 
                   {/* Expanded Comments Panel (Instagram nested layout) */}
                   {expandedPostComments[post.id] && (
-                    <div className="bg-slate-gray/10 border-t border-border/20 px-4 py-4 space-y-4">
+                    <div className="bg-slate-gray/10 border-t border-neutral-500/20 px-4 py-4 space-y-4">
                       {post.comments.map((comm) => (
                         <div key={comm.id} className="flex gap-2.5 items-start">
                           <img
                             src={comm.authorAvatar}
                             alt={comm.authorName}
-                            className="size-7 rounded-full object-cover shrink-0 mt-0.5 border border-border/30"
+                            className="size-7 rounded-full object-cover shrink-0 mt-0.5 border border-neutral-500/30"
                           />
-                          <div className="flex-grow bg-card/30 rounded-2xl p-3 border border-border/20 text-xs">
+                          <div className="flex-grow bg-card/30 rounded-2xl p-3 border border-neutral-500/20 text-xs">
                             <div className="flex justify-between items-center mb-1 font-bold">
                               <span className="text-foreground">{comm.authorName}</span>
                               <span className="text-[9px] text-muted-foreground font-light">
@@ -537,7 +537,7 @@ export default function CommunityPage() {
                             }))
                           }
                           placeholder="Add a reply..."
-                          className="flex-grow px-3 py-2 rounded-xl border border-border/35 bg-card/25 focus:outline-none focus:ring-1 focus:ring-teal-accent text-xs text-foreground placeholder:text-muted-foreground/50"
+                          className="flex-grow px-3 py-2 rounded-xl border border-neutral-500/35 bg-card/25 focus:outline-none focus:ring-1 focus:ring-teal-accent text-xs text-foreground placeholder:text-muted-foreground/50"
                         />
                         <button
                           onClick={() => handleCreateComment(post.id)}
@@ -556,7 +556,7 @@ export default function CommunityPage() {
 
         {/* Right Column: Trending Sidebar (Glassmorphic) */}
         <aside className="w-full lg:w-[240px] shrink-0 sticky top-20 hidden xl:flex flex-col gap-4">
-          <div className="bg-card/45 backdrop-blur-md rounded-2xl border border-border/30 p-5 shadow-lg">
+          <div className="bg-card/45 backdrop-blur-md rounded-2xl border border-neutral-500/30 p-5 shadow-lg">
             <h2 className="text-foreground text-xs font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
               <TrendingUp size={15} className="text-teal-accent" /> Trending Topics
             </h2>
@@ -587,7 +587,7 @@ export default function CommunityPage() {
               </li>
             </ul>
             
-            <hr className="border-border/30 my-4" />
+            <hr className=" border-neutral-500/30 my-4" />
             
             <h2 className="text-foreground text-xs font-bold uppercase tracking-widest mb-4">
               Active Channels

@@ -48,12 +48,6 @@ export function Header({ title, userRole }: HeaderProps) {
             2
           </span>
         </button>
-
-        {/* Dynamic Role Pill */}
-        <span className="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-teal-light text-teal-accent border border-teal-accent/10 capitalize">
-          <span className="w-1.5 h-1.5 rounded-full bg-teal-accent animate-ping" />
-          {userRole} Active
-        </span>
       </div>
     </header>
   );

@@ -13,6 +13,10 @@ declare module "hono" {
 }
 
 export async function authMiddleware(c: Context, next: Next) {
+  if (c.req.method === "OPTIONS") {
+    return await next();
+  }
+
   const authHeader = c.req.header("Authorization");
 
   if (!authHeader) {

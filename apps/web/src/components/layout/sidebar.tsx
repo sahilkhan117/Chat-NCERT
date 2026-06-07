@@ -123,6 +123,7 @@ export function Sidebar({ userRole, userName }: SidebarProps) {
       {/* Sidebar Footer */}
       <div className="p-4 border-t border-neutral-500/30">
         <button
+          onClick={() => window.location.href = "/"}
           className="w-full flex items-center gap-3 px-4 py-2 text-xs font-semibold rounded-lg text-red-500 hover:bg-red-50 hover:text-red-600 transition-colors"
           type="button"
         >

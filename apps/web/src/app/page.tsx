@@ -161,7 +161,7 @@ export default function LandingPage() {
           </div>
 
           {/* Social proof */}
-          <div className="flex items-center gap-3 pt-6 border-t border-neutral-500/30/50">
+          <div className="flex items-center gap-3 pt-6 border-t border-neutral-500/50">
             <div className="flex -space-x-2.5">
               <div className="w-8 h-8 rounded-full border-2 border-background bg-accent-bright text-ink font-bold text-[10px] flex items-center justify-center">N</div>
               <div className="w-8 h-8 rounded-full border-2 border-background bg-accent-warm text-ink font-bold text-[10px] flex items-center justify-center">S</div>
@@ -583,7 +583,7 @@ export default function LandingPage() {
               className={`p-8 bg-card border rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition-all duration-300 ${
                 plan.accent
                   ? "border-accent-bright shadow-lg shadow-accent-bright/5"
-                  : "border-border shadow-sm"
+                  : " border-neutral-500/30 shadow-sm"
               }`}
             >
               <div>
@@ -774,8 +774,8 @@ export default function LandingPage() {
           <div className="space-y-3">
             <h4 className="font-display text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Developer</h4>
             <ul className="text-xs space-y-2 font-light">
-              <li><a href="http://localhost:8787/graphql" target="_blank" rel="noreferrer" className="hover:text-accent-bright">GraphQL Playground</a></li>
-              <li><a href="http://localhost:8787/api/v1/health" target="_blank" rel="noreferrer" className="hover:text-accent-bright">Health Status</a></li>
+              <li><a href="https://chat-ncert-api.sahilkhan123098p.workers.dev/graphql" target="_blank" rel="noreferrer" className="hover:text-accent-bright">GraphQL Playground</a></li>
+              <li><a href="https://chat-ncert-api.sahilkhan123098p.workers.dev/api/v1/health" target="_blank" rel="noreferrer" className="hover:text-accent-bright">Health Status</a></li>
             </ul>
           </div>
 

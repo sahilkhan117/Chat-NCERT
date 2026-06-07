@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { createYoga } from "graphql-yoga";
 import { schema } from "./graphql/schema";
 import ragRouter from "./routes/rag";
@@ -18,6 +19,9 @@ type Bindings = {
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
+
+// Enable CORS globally
+app.use("*", cors());
 
 // Global Logger and Environment Validation Middleware
 app.use("*", async (c, next) => {
